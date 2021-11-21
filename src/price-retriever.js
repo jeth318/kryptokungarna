@@ -8,11 +8,11 @@ exports.priceRetriever = function(){
     const coinDatabasePath = __dirname + '/../data/coingecko-all-coins.json';
     const historyFolderPath = __dirname + '/../data/price';
     
-    this.getPrice = async function(name, tickerSymbol, dateString, currency){
-        let coinInfo = await this.getCoinInfo(name, tickerSymbol);
+    this.getPrice = async function(name, dateString, currency){
+        let coinInfo = await this.getCoinInfo(name);
         let historyData = await this.retrieveHistory(coinInfo, dateString);
 
-        let nameSection = coinInfo.name.bold + '(' + tickerSymbol.yellow + ')';
+        let nameSection = coinInfo.name.bold + '(' + coinInfo.symbol.toUpperCase().yellow + ')';
         let dateSection = 'date:' + dateString;
         let priceSection = 'price:' + (' ' + historyData.data.market_data.current_price[currency] + ' ').green + currency;
         
@@ -41,9 +41,9 @@ exports.priceRetriever = function(){
         return history;
     }
     
-    this.getCoinInfo = async function(name, tickerSymbol){
+    this.getCoinInfo = async function(name){
         let allCoins = await this.getCoinDatabase();
-        return allCoins.data.find(o => o.name.toLowerCase() === name.toLowerCase() && o.symbol.toLowerCase() === tickerSymbol.toLowerCase());
+        return allCoins.data.find(o => o.name.toLowerCase() === name.toLowerCase());
     }
     
     this.getCoinDatabase = async function () {
