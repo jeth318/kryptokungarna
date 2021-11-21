@@ -1,0 +1,19 @@
+{
+  "name": "kryptokungarna",
+  "description": "App that generates tax reports for crypto trades",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "price-example": "node ./examples/price-example.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeth318/kryptokungarna"
+  },
+  "author": "Kryptokungarna",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "coingecko-api": "^1.0.10",
+    "colors": "^1.4.0"
+  }
+}
