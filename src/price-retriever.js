@@ -12,11 +12,14 @@ exports.priceRetriever = function(){
         let coinInfo = await this.getCoinInfo(name);
         let historyData = await this.retrieveHistory(coinInfo, dateString);
 
+        let priceInCurrency = historyData.data.market_data.current_price[currency];
         let nameSection = coinInfo.name.bold + '(' + coinInfo.symbol.toUpperCase().yellow + ')';
         let dateSection = 'date:' + dateString;
-        let priceSection = 'price:' + (' ' + historyData.data.market_data.current_price[currency] + ' ').green + currency;
+        let priceSection = 'price:' + (' ' + priceInCurrency + ' ').green + currency;
         
         console.log(nameSection + " " + dateSection + " " + priceSection);
+        
+        return priceInCurrency;
     };
     
     this.retrieveHistory = async function(coinInfo, dateString)
