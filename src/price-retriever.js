@@ -21,7 +21,7 @@ const getPrice = async function (name, dateString, currency) {
     let dateSection = 'date:' + dateString;
     let priceSection = 'price:' + (' ' + priceInCurrency + ' ').green + currency;
 
-    console.log(nameSection + " " + dateSection + " " + priceSection);
+    // console.log(nameSection + " " + dateSection + " " + priceSection);
     return priceInCurrency;
 };
 
